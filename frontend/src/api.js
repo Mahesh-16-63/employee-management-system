@@ -1,12 +1,11 @@
 import axios from "axios";
 
-// In development, talk directly to the local Flask server.
-// In production (Vercel), use a relative "/api" path — vercel.json rewrites
-// /api/* to the backend service, so this avoids hardcoding a URL and avoids
-// CORS entirely since both live on the same domain.
+// Use environment variable if available, otherwise use local Flask in development
 const API_BASE_URL =
   process.env.REACT_APP_API_BASE_URL ||
-  (process.env.NODE_ENV === "production" ? "/api" : "http://localhost:5000");
+  (process.env.NODE_ENV === "production"
+    ? "https://employees-management-system-lrok.onrender.com"
+    : "http://localhost:5000");
 
 const api = axios.create({
   baseURL: API_BASE_URL,
